@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>QuickQuiz – Résultat</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="result-wrapper">
+    {% set passed = score >= 10 %}
+    <div class="result-card {{ 'pass' if passed else 'fail' }}">
+
+        <div class="result-emoji">{{ 'excellent travail !' if passed else 'travail à améliorer !' }}</div>
+
+        <div class="result-status">
+            {{ 'Félicitations !' if passed else 'Dommage...' }}
+        </div>
+
+        <div class="result-score">
+            {{ score }}<span class="result-total">/20</span>
+        </div>
+
+        <p class="result-label">
+            Statut : 
+            <strong class="{{ 'pass-text' if passed else 'fail-text' }}">
+                {{ result }}
+            </strong>
+        </p>
+
+        <div class="result-actions">
+            <a href="/dashboard" class="btn-back">← Dashboard</a>
+            <a href="/quiz/{{ category }}" class="btn-retry"> Réessayer</a>
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>

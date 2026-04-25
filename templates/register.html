@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>QuickQuiz – Register</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="auth-wrapper">
+    <div class="auth-card">
+
+        <div class="logo">
+            <span class="logo-icon"></span>
+            <span class="logo-text">QuickQuiz</span>
+        </div>
+
+        <p class="auth-subtitle">Créez votre compte</p>
+
+        <form method="POST">
+            <div class="form-group">
+                <label> Username</label>
+                <input type="text" name="username" placeholder="Choisissez un username" required>
+            </div>
+            <div class="form-group">
+                <label> Email</label>
+                <input type="email" name="email" placeholder="votre@email.com" required>
+            </div>
+            <div class="form-group">
+                <label> Password</label>
+                <input type="password" name="password" placeholder="••••••••" required>
+            </div>
+            <button type="submit" class="btn-primary">Créer le compte →</button>
+        </form>
+
+        <p class="auth-link">
+            Déjà un compte ? <a href="/login">Se connecter</a>
+        </p>
+
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>QuickQuiz – Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="dash-wrapper">
+
+    
+    <header class="dash-header">
+        <div class="logo">
+            <span class="logo-icon"></span>
+            <span class="logo-text">QuickQuiz</span>
+        </div>
+        <a href="/logout" class="logout-btn">Déconnexion </a>
+    </header>
+
+    
+    <div class="user-card">
+        <div class="user-avatar">{{ user.username[0].upper() }}</div>
+        <div class="user-info">
+            <h2>Bonjour, {{ user.username }} !</h2>
+            <p>{{ user.email }}</p>
+        </div>
+        <div class="score-badge">
+            <div class="score-num">{{ user.score }}</div>
+            <div class="score-label">Points totaux</div>
+        </div>
+    </div>
+
+    
+    {% if error %}
+    <div class="error-msg"> {{ error }}</div>
+    {% endif %}
+
+    
+    <p class="section-title"> Choisissez une catégorie</p>
+
+    <div class="categories-grid">
+        <a href="/quiz/HTML" class="cat-card">
+            <div class="cat-icon"></div>
+            <div class="cat-name">HTML</div>
+            <div class="cat-desc">10 questions</div>
+        </a>
+        <a href="/quiz/CSS" class="cat-card">
+            <div class="cat-icon"></div>
+            <div class="cat-name">CSS</div>
+            <div class="cat-desc">10 questions</div>
+        </a>
+        <a href="/quiz/Flask" class="cat-card">
+            <div class="cat-icon"></div>
+            <div class="cat-name">Flask</div>
+            <div class="cat-desc">10 questions</div>
+        </a>
+        <a href="/quiz/Jinja2" class="cat-card">
+            <div class="cat-icon"></div>
+            <div class="cat-name">Jinja2</div>
+            <div class="cat-desc">10 questions</div>
+        </a>
+        <a href="/quiz/SQLAlchemy" class="cat-card">
+            <div class="cat-icon"></div>
+            <div class="cat-name">SQLAlchemy

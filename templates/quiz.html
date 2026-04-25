@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>QuickQuiz – Quiz</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="quiz-wrapper">
+
+    
+    <header class="quiz-header">
+        <div class="logo">
+            <span class="logo-icon"></span>
+            <span class="logo-text">QuickQuiz</span>
+        </div>
+        <a href="/dashboard" class="logout-btn">← Dashboard</a>
+    </header>
+
+    
+    <div class="quiz-infobar">
+        <div class="quiz-title"> Quiz — {{ category }}</div>
+        <div class="attempts-badge"> Tentatives restantes : {{ attempts_left }} / 3</div>
+        <div id="timer">⏱️ <span id="countdown">05:00</span></div>
+    </div>
+
+    
+    <form method="POST">
+        {% for q in questions %}
+        <div class="question-card">
+            <div class="q-number">Question {{ loop.index }} / {{ questions|length }}</div>
+            <div class="q-text">{{ q.question }}</div>
+
+            <label class="choice-label">
+                <input type="radio" name="{{ q.id }}" value="{{ q.choice1 }}" required>
+                {{ q.choice1 }}
+            </label>
+            <label class="choice-label">
+                <input type="radio" name="{{ q.id }}" value="{{ q.choice2 }}">
+                {{ q.choice2 }}
+            </label>
+            <label class="choice-label">
+                <input type="radio" name="{{ q.id }}" value="{{ q.choice3 }}">
+                {{ q.choice3 }}
+            </label>
+        </div>
+        {% endfor %}
+
+        <div class="submit-area">
+            <button type="submit" class="btn-primary">Soumettre le quiz →</button>
+        </div>
+    </form>
+
+</div>
+
+<script>
+    let totalSeconds = 300;
+    let interval = setInterval(function() {
+        let minutes = Math.floor(totalSeconds / 60);
+        let seconds = totalSeconds % 60;
+        if (seconds < 10) seconds = "0" + seconds;
+        if (minutes < 10) minutes = "0" + minutes;
+        document.getElementById("countdown").textContent = minutes + ":" + seconds;
+
+        
+        if (totalSeconds <= 60) {
+            document.getElementById("timer").style.color = "#ec4899";
+        }
+
+        if (totalSeconds <= 0) {
+            clearInterval(interval);
+            alert(" Temps écoulé !");
+            document.querySelector("form").submit();
+        }
+        totalSeconds--;
+    }, 1000);
+</script>
+
+</body>
+</html>
